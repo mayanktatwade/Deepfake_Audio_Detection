@@ -32,33 +32,69 @@ For faster training and experimentation, we utilized the **2-second clipped vers
 - The short duration helps speed up **MFCC extraction**, **model training**, and **evaluation** without compromising detection performance for initial benchmarking.
 
 You can find more about the original dataset [here](https://github.com/nii-yamagishilab/Fake-or-Real-Audio-Detection).
+---
 
+## 🔍 Research and Selection
 
-## 🧠 Techniques Used
+During the research phase of this project, various techniques for interpreting and analyzing audio signals were explored. Among the different representations like **raw waveforms**, **spectrograms**, **chroma features**, and **MFCCs (Mel Frequency Cepstral Coefficients)**, **MFCCs stood out as the most effective**. They provide a compact and perceptually-relevant representation of audio, which makes them highly suitable for distinguishing between real and fake speech.
 
-### 1. **Handcrafted Feature-Based Methods**
-- Extracted **MFCCs (Mel-Frequency Cepstral Coefficients)** from audio samples.
-- Converted MFCCs into 2D images (spectrogram-like) and trained models on these.
+### 📌 Key Insights:
+- **MFCCs** effectively capture the timbral texture of speech, which is often subtly distorted in deepfakes.
+- **Spectrograms** are visually rich but computationally heavier and less compact.
+- **Raw waveforms** require deep models like WaveNet or raw audio transformers, which are resource-intensive.
 
-### 2. **Machine Learning Classifier**
-- Implemented a **QSVM (Quadratic Support Vector Machine)** model.
-- Achieved accuracy: **97.56%**
+### 📊 Top Performing Models Explored:
+1. **CNN + LSTM:**  
+   Combines spatial feature extraction (CNN) with temporal context understanding (LSTM). Achieved high performance in modeling time-series patterns in MFCCs.
 
-### 3. **Deep Learning with CNN**
-- Designed a custom CNN model trained on MFCC image plots.
-- Achieved accuracy: **98.5%**
+2. **DeepSonar:**  
+   A BiLSTM-based model that uses frequency-aware features to detect fake audio. Its structure mirrors how humans perceive speech changes.
+
+3. **Quadratic SVM (QSVM):**  
+   A lightweight and efficient model using MFCC-based handcrafted features. Offers fast training and decent accuracy (~97%).
+
+4. **CNN on MFCC Images:**  
+   Translates MFCCs into visual data, allowing image-based CNNs to classify speech samples with high accuracy.
 
 ---
 
-## 🔬 Key Research Conclusions
+## 🔍 Conclusions
 
-- Combining **signal processing**, **machine learning**, and **perceptual insights** yields robust performance.
-- State-of-the-art models like **DeepSonar (98.10%)** and **QSVM (97.56%)** show excellent results on large datasets.
-- Audio deepfakes are complex due to:
-  - Variability in **languages, accents, tones, and emotions**
-  - Need for **large, clean datasets**
-  - **Background noise** interference
+- **CNN+LSTM on MFCC Arrays Achieved the Best Performance**  
+  The hybrid CNN+LSTM model trained directly on MFCC arrays achieved the highest accuracy of **99.28%**, effectively capturing both spatial and temporal audio patterns.
 
+- **DeepSonar Performed Exceptionally Well**  
+  The DeepSonar model reached **97.64% accuracy**, demonstrating strong capability in detecting deepfakes using bidirectional LSTM layers and speaker verification cues.
+
+- **QSVM Offered Moderate Accuracy but was the fastest**  
+  The Quantum Support Vector Machine (QSVM) model achieved **82.41% accuracy**. Though not as powerful as deep learning models, it presents a promising quantum-based alternative.
+
+- **CNN on MFCC Images Showed Lower Performance and longest training duration**  
+  The CNN model trained on MFCC spectrogram images resulted in **83.46% accuracy**. It is easier to implement but can lose audio features during image transformation.
+
+- **MFCC Was the Most Reliable Audio Feature**  
+  Across all models, MFCCs consistently offered meaningful representations of audio data, proving to be the most effective feature for deepfake detection.
+
+
+---
+## ⚠️ Key Problems Faced
+
+- **Lack of Dataset Variety**  
+  The dataset had limited speakers, accents, and noise profiles, which could affect generalization to real-world deepfakes.
+
+- **Time-Consuming Feature Extraction**  
+  Extracting and saving MFCC features or spectrogram images for thousands of audio clips was computationally intensive.
+
+- **Unbalanced Labels**  
+  Initially, real and fake audio labels were not randomized, which affected training performance until addressed through shuffling.
+
+
+
+- **Hyperparameter Tuning Challenges**  
+  Finding the optimal combination of layers, units, and dropout rates for each model required multiple iterations and validations.
+
+- **Mainting storage paths**  
+  Keeping a track on file directories, during importing saving was initially challenging.
 ---
 
 ## ⚙️ Project Structure
@@ -92,4 +128,4 @@ You can find more about the original dataset [here](https://github.com/nii-yamag
 Install via:
 
 ```bash
-pip install -r requirements.txt
+pip install numpy matplotlib librosa tensorflow scikit-learn
