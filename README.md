@@ -21,6 +21,8 @@ Deepfake audio is synthetically generated using techniques like **Text-to-Speech
 
 ## 📂 Dataset Used
 
+**TO DOWNLOAD THE DATASET**: [here](https://drive.google.com/file/d/1H9rlZc83QO1XdouU2CBCnaLZuJBqjJv-/view?usp=sharing)
+
 We used the **FoR (Fake or Real) Audio Deepfake Detection Dataset**, a publicly available dataset designed for evaluating audio deepfake detection methods. It contains a variety of **real and fake audio samples**, generated using modern speech synthesis and voice conversion techniques.
 
 For faster training and experimentation, we utilized the **2-second clipped version** of the FoR dataset, where:
@@ -61,10 +63,9 @@ You can find more about the original dataset [here](https://github.com/nii-yamag
 
 ## ⚙️ Project Structure
 
-- `mfcc_extraction.py`: Extracts MFCCs from real/fake audio samples and saves them as `.npy` arrays.
-- `mfcc_training_model.py`: Trains a model using raw MFCC arrays.
-- `mfcc_image_training.py`: Generates MFCC images, trains CNN model directly on image batches.
-- `mfcc_features.npy`, `labels.npy`: Processed data for training/testing.
+- `main.ipynb`: Main code file containing all the model training and accuracy scores
+- `Download the Dataset`: Instructions to download dataset
+- `README.md`: All the description about the project
 
 ---
 
@@ -72,9 +73,10 @@ You can find more about the original dataset [here](https://github.com/nii-yamag
 
 | Method              | Accuracy |
 |---------------------|----------|
-| QSVM                | 97.56%   |
-| DeepSonar (paper)   | 98.10%   |
-| CNN on MFCC Images  | 98.5%    |
+| CNN+LTSM on MFCC arrays   | 99.2837%   |
+| QSVM                | 82.414%   |
+| DeepSonar   | 97.64%   |
+| CNN on MFCC Images  | 83.463%    |
 
 ---
 
