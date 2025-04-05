@@ -1,6 +1,6 @@
 # 🎙️ Audio Deepfake Detection
 
-This project focuses on detecting audio deepfakes using machine learning and deep learning models, leveraging MFCC features and CNN architectures. Audio deepfakes pose significant societal risks including misinformation, scams, and impersonation threats.
+This project focuses on detecting audio deepfakes and differentiate them from real audio using machine learning and deep learning models, leveraging MFCC features and CNN architectures. Audio deepfakes pose significant societal risks including misinformation, scams, and impersonation threats.
 
 ---
 
@@ -9,6 +9,28 @@ This project focuses on detecting audio deepfakes using machine learning and dee
 Deepfake audio is synthetically generated using techniques like **Text-to-Speech (TTS)** and **Voice Conversion**, often powered by **GANs** (Generative Adversarial Networks) and **VAEs** (Variational Autoencoders). This project combines **signal processing**, **machine learning**, and **deep learning** to detect such manipulations with high accuracy.
 
 ---
+## 🛡️ Requirement of Deepfake Detection
+
+1. **Prevent Misinformation:** Avoid spread of fake news and manipulated speeches.
+2. **Avoid Scams:** Stop fraud calls that impersonate trusted individuals.
+3. **Protect Media Integrity:** Preserve trust in audio and video content.
+4. **Secure Voice Authentication:** Prevent misuse in voice-based security systems.
+5. **Support Legal Verification:** Ensure authenticity of audio evidence in legal settings.
+
+---
+
+## 📂 Dataset Used
+
+We used the **FoR (Fake or Real) Audio Deepfake Detection Dataset**, a publicly available dataset designed for evaluating audio deepfake detection methods. It contains a variety of **real and fake audio samples**, generated using modern speech synthesis and voice conversion techniques.
+
+For faster training and experimentation, we utilized the **2-second clipped version** of the FoR dataset, where:
+
+- Each audio file is exactly **2 seconds long**.
+- The dataset is organized into separate folders for **real** and **fake** audio samples.
+- The short duration helps speed up **MFCC extraction**, **model training**, and **evaluation** without compromising detection performance for initial benchmarking.
+
+You can find more about the original dataset [here](https://github.com/nii-yamagishilab/Fake-or-Real-Audio-Detection).
+
 
 ## 🧠 Techniques Used
 
@@ -53,14 +75,6 @@ Deepfake audio is synthetically generated using techniques like **Text-to-Speech
 | QSVM                | 97.56%   |
 | DeepSonar (paper)   | 98.10%   |
 | CNN on MFCC Images  | 98.5%    |
-
----
-
-## 🚨 Societal Risks
-
-1. **Fake News Generation**
-2. **Voice-based Scams or Frauds**
-3. **Deepfake Calls for Misinformation**
 
 ---
 
